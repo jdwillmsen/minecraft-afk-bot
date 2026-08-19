@@ -17,11 +17,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7.0.1
 
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@v4.2.0
 
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@v4.6.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -42,7 +42,7 @@ jobs:
       # linux/amd64 only: every node in the target cluster is amd64, and the
       # native RakNet addon is compiled from source, so an arm64 variant would
       # roughly double build time for an image nothing would pull.
-      - uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v7.3.0
         with:
           context: .
           push: true

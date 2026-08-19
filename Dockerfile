@@ -5,7 +5,7 @@
 # cmake-js and compiles a C++ addon. musl prebuilds are unreliable, so an
 # Alpine base either fails the build outright or silently falls back to the
 # slower pure-JS RakNet path.
-FROM node:22-bookworm-slim@sha256:d649c27dae7ba0137b3cef5dd75baa422c08dc3d9e3fc0c23dfb172dc3cc6436 AS builder
+FROM node:24-bookworm-slim@sha256:3638d9a6fe4030bd716be989438248074489337ba3275657f93595428be4fc03 AS builder
 
 # cmake is not in the base image and the addon cannot build without it. These
 # stay in the builder stage: the runtime image has no business carrying a
@@ -56,7 +56,7 @@ RUN rm -rf node_modules/jsp-raknet/node_modules/typescript \
         ! -name Release -exec rm -rf {} + \
     && node -e "require('bedrock-protocol'); console.log('bedrock-protocol still loads after trim')"
 
-FROM node:22-bookworm-slim@sha256:d649c27dae7ba0137b3cef5dd75baa422c08dc3d9e3fc0c23dfb172dc3cc6436
+FROM node:24-bookworm-slim@sha256:3638d9a6fe4030bd716be989438248074489337ba3275657f93595428be4fc03
 
 ARG MC_VERSION=1.26.40
 # Baked so the running default cannot drift from the version whose data
