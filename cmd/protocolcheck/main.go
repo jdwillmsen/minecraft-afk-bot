@@ -137,6 +137,8 @@ func main() {
 		return
 	}
 
+	// Exit 1 rather than failing silently: this runs unattended, and a
+	// mismatch that only appears in logs is a mismatch nobody sees.
 	fmt.Fprintf(os.Stderr,
 		"protocolcheck: gophertunnel speaks %s (protocol %d) but production reports %s; bots may fail to connect\n",
 		protocol.CurrentVersion, protocol.CurrentProtocol, *production)
